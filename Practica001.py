@@ -16,7 +16,8 @@ pyautogui.PAUSE = 2
 # Si existe, toma sus coordenadas y le hace click
 
 def pulsarBoton(objeto):
-    ObjName = objeto + '.PNG'
+    ObjName = "images\\" + objeto + '.PNG'
+
     SiExiste = pyautogui.locateOnScreen(ObjName)
     print(SiExiste)
     button7x, button7y = pyautogui.center(SiExiste)
@@ -26,9 +27,9 @@ def pulsarBoton(objeto):
 
 # Funcion <validarValor>
 # Verifica si existe una imagen en pantalla
-
 def validarValor(resultado):
-    ObjName = resultado + '.PNG'
+    ObjName = "images\\" + resultado + '.PNG'
+    print (ObjName)
     SiExiste = pyautogui.locateOnScreen(ObjName)
     pyautogui.PAUSE = 0.25
     if (SiExiste == None):
@@ -38,14 +39,15 @@ def validarValor(resultado):
     return resultado
 
 # Posiciona el cursor en el ángulo superior izquierdo
-
 pyautogui.moveTo(5, 5)
 
 # Valida que esté abierta la Calculadora
+assert (validarValor("CALCULADORA"))
 
-print (validarValor("CALCULADORA"))
-
+# Borra el valor
 pulsarBoton("BOTON CE")
+
+# Realizza la operación
 pulsarBoton("NUEVE")
 pulsarBoton("OCHO")
 pulsarBoton("SUMA")
@@ -54,5 +56,4 @@ pulsarBoton("TRES")
 pulsarBoton("IGUAL")
 
 # Valida el Resultado esperado
-
-print (validarValor("RESULTADO"))
+assert (validarValor("RESULTADO"))
